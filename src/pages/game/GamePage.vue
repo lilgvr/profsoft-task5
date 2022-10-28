@@ -1,53 +1,40 @@
 <template>
-  <div>
-<!--    <input
-        v-model="playerName"
-        type="text"
-    >
-    <button @click="createPlayer">
-      Add Player
-    </button>
-    <div v-if="players.length">
-      <h3>Players:</h3>
-      <santa-player
-          v-for="player in players"
-          :key="player.id"
-          :name="player.name"
-          @custom-event="onEmit"
-      />
-    </div>-->
+  <div class="gamePageCtr">
+    <div class="controlsList">
+      <game-controls/>
+      <div class="addPlayer">
+        <player-list/>
+        <add-player/>
+      </div>
+    </div>
+    <game-state/>
   </div>
 </template>
 
 <script>
-import SantaPlayer from "@/components/game/player/SantaPlayer";
-import { mapActions, mapState } from "vuex";
+import AddPlayer from "@/components/game/add-player/AddPlayer";
+import GameControls from "@/components/game/controls/GameControls";
+import GameState from "@/components/game/game-state/GameState";
+import PlayerList from "@/components/game/player-list/PlayerList";
 
 export default {
   name: 'GamePage',
-  components: { SantaPlayer },
-
-  data: () => ({
-    playerName: '',
-    count: 0,
-  }),
-  computed: {
-    ...mapState({
-      players: state => state.players.players,
-    }),
-  },
-  methods: {
-    ...mapActions('players', ['addPlayer']),
-    createPlayer() {
-      if (this.playerName) this.addPlayer(this.playerName)
-    },
-    onEmit(data) {
-      console.log(data)
-    },
-  },
+  components: { PlayerList, AddPlayer, GameControls, GameState },
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.gamePageCtr {
+  padding-left: 2vw;
+  display: flex;
 
+  .controlsList {
+    height: 60%;
+    width: 50%;
+
+    .addPlayer {
+      display: flex;
+    }
+  }
+}
 </style>

@@ -20,7 +20,7 @@ const router = new Router({
           component: GamePage,
           meta: {
             path: '/customization',
-            name: 'customization',
+            name: 'Customization',
           },
         },
         {
@@ -29,7 +29,7 @@ const router = new Router({
           component: CustomizationPage,
           meta: {
             path: '/',
-            name: 'game',
+            name: 'Game',
           },
         },
       ],

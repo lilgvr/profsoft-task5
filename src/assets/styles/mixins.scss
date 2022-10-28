@@ -1,0 +1,13 @@
+@import "../../index";
+
+@mixin customScroll {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $primary-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $white;
+        border-radius: 3px;
+    }
+}

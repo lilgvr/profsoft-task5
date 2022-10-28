@@ -1,14 +1,17 @@
 <template>
-  <div class="header">
+  <header>
     <h1 class="header__title">
       Secret Santa
     </h1>
-    <router-link :to="linkPath">
-      <span class="header__link">
+    <router-link
+        :to="linkPath"
+        class="header__link"
+    >
+      <span>
         {{ linkName }}
       </span>
     </router-link>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -27,16 +30,28 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header {
+@import "../../index";
+
+header {
   display: flex;
   justify-content: space-around;
+  background-color: $secondary-color;
+  padding: 1vw 0;
+  margin-bottom: 2vw;
 
-  &__title {
-
+  h1, a {
+    color: $white;
   }
 
-  &__link {
-    text-transform: uppercase;
+  h1 {
+    font-size: 24pt;
+    font-weight: 600;
+  }
+
+  a {
+    &:visited {
+      color: $white;
+    }
   }
 }
 </style>

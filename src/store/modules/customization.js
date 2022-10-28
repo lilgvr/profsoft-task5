@@ -1,6 +1,16 @@
 export default {
   namespaced: 'true',
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    currentTheme: 'default',
+  },
+  mutations: {
+    changeTheme(state, title) {
+      state.currentTheme = title;
+    },
+  },
+  actions: {
+    changeTheme({ commit }, title) {
+      commit('changeTheme', title);
+    },
+  },
 }

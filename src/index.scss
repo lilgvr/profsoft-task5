@@ -1,3 +1,11 @@
+@import "./assets/fonts/Saira/index";
+
+$white: #F2EDEA;
+$secondary-color: #63462A;
+$accent-color: #A45D3C;
+$primary-color: #1F1D1B;
+$background-color: #C9B598;
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -17,24 +25,34 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
+	font-family: "Saira Regular", sans-serif;
+	background-color: $background-color;
+	color: $primary-color;
+	font-size: 20pt;
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;

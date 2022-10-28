@@ -1,6 +1,6 @@
 <template>
-  <div @click="handleClick">
-    {{ name }}
+  <div class="santaPlayer">
+    <p>{{ name }}</p>
   </div>
 </template>
 
@@ -12,14 +12,26 @@ export default {
       type: String,
     },
   },
-  methods: {
-    handleClick() {
-      this.$emit('custom-event', name);
-    },
-  },
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../../index.scss";
 
+.santaPlayer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  max-height: 3em;
+
+  &:not(:last-of-type) {
+    border-bottom: 2px solid $primary-color;
+  }
+
+  p {
+    color: $white;
+    text-overflow: ellipsis;
+  }
+}
 </style>
