@@ -8,7 +8,17 @@
         <h3>Gift Sender</h3>
         <h3>Gift Receiver</h3>
       </div>
-      <div class="gameStateTable__content">
+      <div
+          class="gameStateTable__content"
+      >
+        <div
+            class="gameStateTable__row"
+            v-for="[player1, player2] in boundPlayers"
+            :key="player1.id"
+        >
+          <p>{{ player1.name }}</p>
+          <p>{{ player2.name }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -22,7 +32,7 @@ export default {
   computed: {
     ...mapState({
       players: state => state.players.players,
-      boundPlayers: state => state.boundPlayers,
+      boundPlayers: state => state.players.boundPlayers,
     }),
   },
 }

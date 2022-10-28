@@ -6,11 +6,13 @@
           :image="startImage"
           :title="startText"
           :on-click="handleStartClick"
+          :disabled="gameStarted"
       />
       <controls-button
           :image="reshuffleImage"
           :title="reshuffleText"
           :on-click="handleReshuffleClick"
+          :disabled="false"
       />
     </div>
   </div>
@@ -28,6 +30,7 @@ export default {
     reshuffleText: 'Reshuffle',
     startImage: 'play',
     reshuffleImage: 'reload',
+    gameStarted: false,
   }),
   computed: {
     ...mapState({
@@ -36,19 +39,53 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('players', ['bindPlayers']),
+    ...mapActions('players', ['bindPlayers', 'startGame']),
     handleStartClick() {
+      if (this.gameStarted) return;
 
-      this.bindPlayers({
-        firstPlayerId: this.players[0].id,
-        secondPlayerId: this.players[1].id,
-      });
-
-      console.log(this.boundPlayers)
+      this.startGame();
+      this.gameStarted = true;
     },
     handleReshuffleClick() {
 
     },
+    startGame() {
+      const getRandomIndex = () => Math.floor(Math.random() * this.players.length);
+
+      const isReceiver = (player) => {
+        const values = this.boundPlayers.values();
+        let next = values.next();
+
+        while (!next.done) {
+          if (next.value === player.id) return true;
+          next = values.next();
+        }
+
+        return false;
+      }
+
+      for (let i = 0; i < this.players.length; i++) {
+        let randomIndex = getRandomIndex();
+        const current = this.players[i];
+
+        while (randomIndex === i) randomIndex = getRandomIndex();
+
+        let randomPlayer = this.players[randomIndex];
+
+        while (isReceiver(randomPlayer)) {
+          randomIndex = getRandomIndex();
+          randomPlayer = this.players[randomIndex];
+        }
+
+        this.bindPlayers({
+          firstPlayerId: current.id,
+          secondPlayerId: randomPlayer.id,
+        });
+      }
+    },
+  },
+  reshuffle() {
+
   },
 }
 </script>

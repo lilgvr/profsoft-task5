@@ -5,3 +5,7 @@ $christmas-theme: (
     "primary-color": #43291F,
     "background-color": #87C38F
 );
+
+:export {
+    christmasTheme: $christmas-theme;
+}

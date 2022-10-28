@@ -1,20 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const getBoundPlayersMap = () => {
-  const storage = JSON.parse(localStorage.getItem('secretSanta/boundPlayers'));
-
-  if (storage) return new Map(storage);
-
-  return new Map();
-}
-
 export default {
   namespaced: 'true',
   state: {
     players: JSON.parse(
       localStorage.getItem('secretSanta/players'),
     ) || [],
-    boundPlayers: getBoundPlayersMap(),
+    boundPlayers: new Map(
+      JSON.parse(localStorage.getItem('secretSanta/boundPlayers')),
+    ),
   },
   mutations: {
     addPlayer: (state, name) => {
@@ -26,7 +20,7 @@ export default {
     },
     bindPlayers: (state, { firstPlayerId, secondPlayerId }) => {
       state.boundPlayers.set(firstPlayerId, secondPlayerId);
-      localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
+      // localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
     },
 
   },
@@ -34,8 +28,8 @@ export default {
     addPlayer: ({ commit }, name) => {
       commit('addPlayer', name);
     },
-    bindPlayers: ({ commit }, firstPlayer, secondPlayer) => {
-      commit('bindPlayers', firstPlayer, secondPlayer);
+    bindPlayers: ({ commit }, { firstPlayerId, secondPlayerId }) => {
+      commit('bindPlayers', { firstPlayerId, secondPlayerId });
     },
   },
   getters: {},

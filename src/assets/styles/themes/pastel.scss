@@ -4,4 +4,8 @@ $pastel-theme: (
     "accent-color": #22333B,
     "primary-color": #0A0908,
     "background-color": #C6AC8F
-)
+);
+
+:export {
+    pastelTheme: $pastel-theme;
+}

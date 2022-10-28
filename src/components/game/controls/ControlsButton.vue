@@ -1,6 +1,6 @@
 <template>
-  <div class="controls__button">
-    <div>
+  <div class="controls__button" :title="getTitle">
+    <div :class="{disabled: disabled}">
       <div
           @click="onClick"
           :style="maskStyle"
@@ -24,6 +24,9 @@ export default {
     onClick: {
       type: Function,
     },
+    disabled: {
+      type: Boolean,
+    },
   },
   data: () => ({
     maskStyle: {
@@ -31,6 +34,11 @@ export default {
       WebkitMaskImage: '',
     },
   }),
+  computed: {
+    getTitle() {
+      return this.disabled ? 'Game is started' : this.title;
+    },
+  },
   mounted() {
     this.setMaskImage();
   },
@@ -90,6 +98,22 @@ export default {
       height: 80%;
       margin: 0;
       mask-position: center;
+    }
+  }
+
+  .disabled {
+    &, & ~ p {
+      user-select: none;
+      opacity: .5;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+
+    &:hover {
+      background-color: $secondary-color;
+      border-color: $primary-color;
     }
   }
 }

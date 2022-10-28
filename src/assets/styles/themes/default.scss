@@ -5,3 +5,8 @@ $default-theme: (
     "primary-color": #1F1D1B,
     "background-color": #C9B598
 );
+
+:export {
+    defaultTheme: $default-theme;
+}
+
