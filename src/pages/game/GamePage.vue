@@ -1,5 +1,8 @@
 <template>
-  <div class="gamePageCtr">
+  <div
+      class="gamePageCtr"
+      :class="getThemeClass()"
+  >
     <div class="controlsList">
       <game-controls/>
       <div class="addPlayer">
@@ -25,6 +28,11 @@ export default {
     ...mapState({
       currentTheme: state => state.customization.currentTheme,
     }),
+  },
+  methods: {
+    getThemeClass() {
+      return `${ this.currentTheme }-theme`;
+    },
   },
 }
 </script>

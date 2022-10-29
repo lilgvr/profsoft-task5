@@ -1,13 +1,39 @@
-@import "index";
+@import "./themes/pastel.module";
+@import "./themes/default.module";
+@import "./themes/christmas.module";
 
-@mixin customScroll {
+@mixin customScrollDefault {
     &::-webkit-scrollbar {
         width: 10px;
-        background-color: $primary-color;
+        background-color: $default-primary;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: $white;
+        background-color: $default-white;
+        border-radius: 3px;
+    }
+}
+
+@mixin customScrollPastel {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $pastel-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $pastel-white;
+        border-radius: 3px;
+    }
+}
+
+@mixin customScrollChristmas {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $christmas-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $christmas-white;
         border-radius: 3px;
     }
 }

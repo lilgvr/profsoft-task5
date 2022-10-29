@@ -1,11 +1,12 @@
 export default {
   namespaced: 'true',
   state: {
-    currentTheme: 'default',
+    currentTheme: localStorage.getItem('secretSanta/currentTheme') || 'default',
   },
   mutations: {
     changeTheme(state, theme) {
       state.currentTheme = theme.toLowerCase();
+      localStorage.setItem('secretSanta/currentTheme', state.currentTheme);
     },
   },
   actions: {

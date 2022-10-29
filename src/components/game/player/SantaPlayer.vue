@@ -25,12 +25,8 @@ export default {
   padding: 5px 0;
   max-height: 3em;
 
-  &:not(:last-of-type) {
-    border-bottom: 2px solid $primary-color;
-  }
 
   p {
-    color: $white;
     text-overflow: ellipsis;
   }
 }

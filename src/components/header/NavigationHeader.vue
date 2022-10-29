@@ -1,5 +1,5 @@
 <template>
-  <header :class="getThemeClass()">
+  <header>
     <h1 class="header__title">
       Secret Santa
     </h1>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 
 export default {
   name: "NavigationHeader",
@@ -27,24 +26,10 @@ export default {
       type: String,
     },
   },
-  computed: {
-    ...mapState({
-      currentTheme: state => state.customization.currentTheme,
-    }),
-  },
-  methods: {
-    getThemeClass() {
-      return `${ this.currentTheme }-theme`;
-    },
-  },
 }
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/styles/themes/default.module";
-@import "../../assets/styles/themes/christmas.module";
-@import "../../assets/styles/themes/pastel.module";
-
 header {
   display: flex;
   justify-content: space-around;

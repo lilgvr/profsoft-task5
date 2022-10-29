@@ -2,12 +2,9 @@
 @import "./themes/default.module";
 @import "./themes/christmas.module";
 @import "./themes/pastel.module";
+@import "./mixins.scss";
 
-$white: #F2EDEA;
-$secondary-color: #63462A;
-$accent-color: #A45D3C;
-$primary-color: #1F1D1B;
-$background-color: #C9B598;
+//$current-theme: ffi-require("../../store/modules/customization", "state/currentTheme");
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -60,7 +57,12 @@ table {
 }
 
 .default-theme {
-    background-color: $default-secondary;
+    background-color: $default-background;
+    color: $default-primary;
+
+    header {
+        background-color: $default-secondary;
+    }
 
     h1, a {
         color: $default-white;
@@ -80,10 +82,92 @@ table {
             border-color: $default-accent;
         }
     }
+
+    button {
+        background-color: $default-secondary;
+        color: $default-white;
+        border: 2px solid $default-primary;
+
+        &:hover {
+            background-color: $default-primary;
+            border-color: $default-accent;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $default-secondary;
+            border: 2px solid $default-primary;
+
+            &:hover {
+                background-color: $default-primary;
+                border-color: $default-accent;
+            }
+
+            & > div {
+                background-color: $default-accent;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $default-secondary;
+            border-color: $default-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $default-primary;
+        background-color: $default-secondary;
+
+        h3 {
+            border-bottom: 2px solid $default-primary;
+            background-color: $default-white;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $default-primary;
+
+        &__content {
+            @include customScrollDefault;
+        }
+
+        &__row {
+            border-bottom: 1px solid $default-primary;
+
+            p {
+                color: $default-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $default-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $default-white;
+            border-bottom: 2px solid $default-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $default-primary;
+        }
+
+        p {
+            color: $default-white;
+        }
+    }
 }
 
 .pastel-theme {
-    background-color: $pastel-secondary;
+    background-color: $pastel-background;
+    color: $pastel-primary;
+
+    header {
+        background-color: $pastel-secondary;
+    }
 
     h1, a {
         color: $pastel-white;
@@ -94,5 +178,194 @@ table {
             color: $pastel-white;
         }
     }
+
+    input {
+        background-color: $pastel-white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        background-color: $pastel-secondary;
+        color: $pastel-white;
+        border: 2px solid $pastel-primary;
+
+        &:hover {
+            background-color: $pastel-accent;
+            border-color: $pastel-secondary;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $pastel-secondary;
+            border: 2px solid $pastel-primary;
+
+            &:hover {
+                background-color: $pastel-accent;
+                border-color: $pastel-accent;
+            }
+
+            & > div {
+                background-color: $pastel-background;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $pastel-secondary;
+            border-color: $pastel-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $pastel-primary;
+        background-color: $pastel-secondary;
+
+        h3 {
+            border-bottom: 2px solid $pastel-primary;
+            background-color: $pastel-white;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $pastel-primary;
+
+        &__content {
+            background-color: $pastel-secondary;
+        }
+
+        &__row {
+            border-bottom: 1px solid $pastel-primary;
+
+            p {
+                color: $pastel-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $pastel-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $pastel-white;
+            border-bottom: 2px solid $pastel-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $pastel-primary;
+        }
+
+        p {
+            color: $pastel-white;
+        }
+    }
 }
 
+.christmas-theme {
+    background-color: $christmas-background;
+    color: $christmas-primary;
+
+    header {
+        background-color: $christmas-secondary;
+    }
+
+    h1, a {
+        color: $christmas-white;
+    }
+
+    a {
+        &:visited {
+            color: $christmas-white;
+        }
+    }
+
+    input {
+        background-color: $christmas-white;
+
+        &:focus {
+            outline: none;
+            border-color: $christmas-accent;
+        }
+    }
+
+    button {
+        background-color: $christmas-secondary;
+        color: $christmas-white;
+        border: 2px solid $christmas-primary;
+
+        &:hover {
+            background-color: $christmas-primary;
+            border-color: $christmas-accent;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $christmas-secondary;
+            border: 2px solid $christmas-primary;
+
+            &:hover {
+                background-color: $christmas-primary;
+                border-color: $christmas-accent;
+            }
+
+            & > div {
+                background-color: $christmas-accent;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $christmas-secondary;
+            border-color: $christmas-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $christmas-primary;
+        background-color: $christmas-secondary;
+
+        h3 {
+            border-bottom: 2px solid $christmas-primary;
+            background-color: $christmas-white;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $christmas-primary;
+
+        &__content {
+            background-color: $christmas-secondary;
+        }
+
+        &__row {
+            border-bottom: 1px solid $christmas-primary;
+
+            p {
+                color: $christmas-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $christmas-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $christmas-white;
+            border-bottom: 2px solid $christmas-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $christmas-primary;
+        }
+
+        p {
+            color: $christmas-white;
+        }
+    }
+}

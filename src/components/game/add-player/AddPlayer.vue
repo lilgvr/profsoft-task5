@@ -1,5 +1,8 @@
 <template>
-  <div class="addPlayer">
+  <div
+      class="addPlayer"
+      :class="getThemeClass()"
+  >
     <div class="addPlayer__input">
       <input
           v-model="playerName"
@@ -17,14 +20,18 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "AddPlayer",
   data: () => ({
     playerName: '',
   }),
-
+  computed: {
+    ...mapState({
+      currentTheme: state => state.customization.currentTheme,
+    }),
+  },
   methods: {
     ...mapActions('players', ['addPlayer']),
     createPlayer() {
@@ -34,6 +41,9 @@ export default {
       this.$refs.playerNameInput.value = null;
       this.playerName = null;
       this.$refs.playerNameInput.focus();
+    },
+    getThemeClass() {
+      return `${ this.currentTheme }-theme`;
     },
   },
 }
@@ -69,14 +79,10 @@ export default {
       font-size: 14pt;
       border-radius: 5px;
       padding: 4px;
-      background-color: $secondary-color;
-      color: $white;
-      border: 2px solid black;
       transition: background-color .1s linear, border-color .1s linear;
 
       &:hover {
-        background-color: $primary-color;
-        border-color: $accent-color;
+
         cursor: pointer;
       }
     }

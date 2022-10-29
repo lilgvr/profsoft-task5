@@ -37,7 +37,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../assets/styles/index";
 @import "../../../assets/styles/mixins";
 
 .gameState {
@@ -47,19 +46,17 @@ export default {
   &Table {
     display: flex;
     flex-direction: column;
-    border: 2px solid $primary-color;
     border-radius: 7px;
     height: 65%;
     max-height: 65%;
     width: 60%;
 
     &__content {
-      @include customScroll;
+      @include customScrollDefault;
 
       overflow-x: hidden;
       overflow-y: auto;
       border-radius: 0 0 7px 7px;
-      background-color: $secondary-color;
       flex-grow: 2;
     }
 
@@ -68,7 +65,6 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      border-bottom: 1px solid $primary-color;
 
       p, h3 {
         display: flex;
@@ -80,20 +76,13 @@ export default {
       }
 
       p {
-        color: $white;
         font-size: 14pt;
-
-        &:first-of-type {
-          border-right: 1px solid $primary-color;
-        }
       }
     }
 
     &__header {
       flex-grow: 0;
-      background-color: $white;
       border-radius: 7px 7px 0 0;
-      border-bottom: 2px solid $primary-color;
 
       h3 {
         font-weight: 600;

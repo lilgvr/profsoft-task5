@@ -59,8 +59,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles/index";
-
 .controls__button {
   display: flex;
   flex-direction: column;
@@ -77,23 +75,18 @@ export default {
     width: $wh;
     height: $wh;
 
-    background-color: $secondary-color;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 7px;
-    border: 2px solid $primary-color;
     transition: background-color .1s linear, border-color .1s linear;
 
     &:hover {
-      background-color: $primary-color;
-      border-color: $accent-color;
       cursor: pointer;
     }
 
     & > div {
       mask-repeat: no-repeat;
-      background: $accent-color;
       width: 80%;
       height: 80%;
       margin: 0;
@@ -109,11 +102,6 @@ export default {
       &:hover {
         cursor: not-allowed;
       }
-    }
-
-    &:hover {
-      background-color: $secondary-color;
-      border-color: $primary-color;
     }
   }
 }

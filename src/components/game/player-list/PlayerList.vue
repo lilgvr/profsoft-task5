@@ -27,30 +27,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles/index";
 @import "../../../assets/styles/mixins";
 
 .playersList {
   width: 30%;
   border-radius: 10px;
-  border: 2px solid $primary-color;
   height: 25vw;
   margin-right: 4vw;
   display: flex;
   flex-direction: column;
-
-  background-color: $secondary-color;
 
   h3 {
     flex-grow: 0;
     width: 100%;
     height: 5%;
     display: block;
-    border-bottom: 2px solid $primary-color;
     font-size: 14pt;
     font-weight: 600;
     text-align: center;
-    background-color: $white;
     padding: 10px 0;
     border-radius: 10px 10px 0 0;
   }
@@ -60,7 +54,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
 
-    @include customScroll;
+    @include customScrollDefault;
 
   }
 }
