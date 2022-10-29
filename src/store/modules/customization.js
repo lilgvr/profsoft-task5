@@ -4,13 +4,13 @@ export default {
     currentTheme: 'default',
   },
   mutations: {
-    changeTheme(state, title) {
-      state.currentTheme = title;
+    changeTheme(state, theme) {
+      state.currentTheme = theme.toLowerCase();
     },
   },
   actions: {
-    changeTheme({ commit }, title) {
-      commit('changeTheme', title);
+    changeTheme({ commit }, theme) {
+      commit('changeTheme', theme);
     },
   },
 }

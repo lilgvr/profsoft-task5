@@ -40,17 +40,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../index";
+@import "../../../assets/styles/themes/default.module";
+@import "../../../assets/styles/themes/christmas.module";
+@import "../../../assets/styles/themes/pastel.module";
+@import "../../../assets/styles/index";
 
 .addPlayer {
-
-
   &__input {
     display: flex;
     flex-direction: column;
 
     input {
-      background-color: $white;
       font-size: 14pt;
       border-radius: 5px;
       border: 2px solid black;
@@ -62,7 +62,6 @@ export default {
 
       &:focus {
         outline: none;
-        border-color: $accent-color;
       }
     }
 

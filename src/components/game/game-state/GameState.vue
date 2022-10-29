@@ -33,12 +33,11 @@ export default {
       boundPlayers: state => state.players.boundPlayers,
     }),
   },
-
 }
 </script>
 
 <style lang="scss">
-@import "../../../index";
+@import "../../../assets/styles/index";
 @import "../../../assets/styles/mixins";
 
 .gameState {
@@ -51,6 +50,7 @@ export default {
     border: 2px solid $primary-color;
     border-radius: 7px;
     height: 65%;
+    max-height: 65%;
     width: 60%;
 
     &__content {

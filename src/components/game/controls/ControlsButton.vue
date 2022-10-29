@@ -1,6 +1,6 @@
 <template>
   <div class="controls__button" :title="getTitle">
-    <div :class="{disabled: disabled}">
+    <div :class="{disabled: this.disabled}">
       <div
           @click="onClick"
           :style="maskStyle"
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../index";
+@import "../../../assets/styles/index";
 
 .controls__button {
   display: flex;

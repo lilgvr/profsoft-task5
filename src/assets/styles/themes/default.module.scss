@@ -1,0 +1,13 @@
+$default-white: #F2EDEA;
+$default-secondary: #63462A;
+$default-accent: #A45D3C;
+$default-primary: #1F1D1B;
+$default-background: #C9B598;
+
+:export {
+    white: $default-white;
+    secondary: $default-secondary;
+    accent: $default-accent;
+    primary: $default-primary;
+    background: $default-background;
+}

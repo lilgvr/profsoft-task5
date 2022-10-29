@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../index";
+@import "../../../assets/styles/index";
 @import "../../../assets/styles/mixins";
 
 .playersList {

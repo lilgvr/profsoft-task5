@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../index.scss";
+@import "../../../assets/styles/index";
 
 .santaPlayer {
   width: 100%;

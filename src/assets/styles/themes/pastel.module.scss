@@ -1,0 +1,13 @@
+$pastel-white: #EAE0D5;
+$pastel-secondary: #5E503F;
+$pastel-accent: #22333B;
+$pastel-primary: #0A0908;
+$pastel-background: #C6AC8F;
+
+:export {
+    white: $pastel-white;
+    secondary: $pastel-secondary;
+    accent: $pastel-accent;
+    primary: $pastel-primary;
+    background: $pastel-background;
+}
