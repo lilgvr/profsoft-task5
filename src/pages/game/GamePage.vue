@@ -27,10 +27,12 @@ export default {
 .gamePageCtr {
   padding-left: 2vw;
   display: flex;
+  max-height: 100vh;
 
   .controlsList {
     height: 60%;
     width: 50%;
+    max-height: 100vh;
 
     .addPlayer {
       display: flex;

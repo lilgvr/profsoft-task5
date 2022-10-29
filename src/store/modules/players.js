@@ -18,19 +18,23 @@ export default {
       });
       localStorage.setItem('secretSanta/players', JSON.stringify(state.players));
     },
-    bindPlayers: (state, { firstPlayerId, secondPlayerId }) => {
-      state.boundPlayers.set(firstPlayerId, secondPlayerId);
+    bindPlayers: (state, { firstPlayer, secondPlayer }) => {
+      state.boundPlayers.set(firstPlayer, secondPlayer);
       // localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
     },
-
+    clearBoundPlayers: (state) => {
+      state.boundPlayers.clear();
+    },
   },
   actions: {
     addPlayer: ({ commit }, name) => {
       commit('addPlayer', name);
     },
-    bindPlayers: ({ commit }, { firstPlayerId, secondPlayerId }) => {
-      commit('bindPlayers', { firstPlayerId, secondPlayerId });
+    bindPlayers: ({ commit }, { firstPlayer, secondPlayer }) => {
+      commit('bindPlayers', { firstPlayer, secondPlayer });
+    },
+    clearBoundPlayers: ({ commit }) => {
+      commit('clearBoundPlayers');
     },
   },
-  getters: {},
 }

@@ -39,30 +39,36 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('players', ['bindPlayers', 'startGame']),
+    ...mapActions('players', ['bindPlayers', 'clearBoundPlayers']),
     handleStartClick() {
       if (this.gameStarted) return;
 
       this.startGame();
       this.gameStarted = true;
+
+      console.log(this.boundPlayers)
     },
     handleReshuffleClick() {
+      if (!this.gameStarted) return;
 
+      this.clearBoundPlayers();
+      this.startGame();
     },
     startGame() {
       const getRandomIndex = () => Math.floor(Math.random() * this.players.length);
 
-      const isReceiver = (player) => {
-        const values = this.boundPlayers.values();
-        let next = values.next();
+      const
+          isReceiver = (player) => {
+            const values = this.boundPlayers.values();
+            let next = values.next();
 
-        while (!next.done) {
-          if (next.value === player.id) return true;
-          next = values.next();
-        }
+            while (!next.done) {
+              if (next.value.id === player.id) return true;
+              next = values.next();
+            }
 
-        return false;
-      }
+            return false;
+          }
 
       for (let i = 0; i < this.players.length; i++) {
         let randomIndex = getRandomIndex();
@@ -78,14 +84,17 @@ export default {
         }
 
         this.bindPlayers({
-          firstPlayerId: current.id,
-          secondPlayerId: randomPlayer.id,
+          firstPlayer: {
+            id: current.id,
+            name: current.name,
+          },
+          secondPlayer: {
+            id: randomPlayer.id,
+            name: randomPlayer.name,
+          },
         });
       }
     },
-  },
-  reshuffle() {
-
   },
 }
 </script>

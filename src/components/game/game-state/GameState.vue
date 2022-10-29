@@ -8,16 +8,14 @@
         <h3>Gift Sender</h3>
         <h3>Gift Receiver</h3>
       </div>
-      <div
-          class="gameStateTable__content"
-      >
+      <div class="gameStateTable__content">
         <div
             class="gameStateTable__row"
-            v-for="[player1, player2] in boundPlayers"
-            :key="player1.id"
+            v-for="[key, value] in boundPlayers"
+            :key="key.id"
         >
-          <p>{{ player1.name }}</p>
-          <p>{{ player2.name }}</p>
+          <p>{{ key.name }}</p>
+          <p>{{ value.name }}</p>
         </div>
       </div>
     </div>
@@ -35,6 +33,7 @@ export default {
       boundPlayers: state => state.players.boundPlayers,
     }),
   },
+
 }
 </script>
 
@@ -44,23 +43,24 @@ export default {
 
 .gameState {
   width: 50%;
+  max-height: 100vh;
 
   &Table {
     display: flex;
     flex-direction: column;
     border: 2px solid $primary-color;
     border-radius: 7px;
-    height: 80%;
+    height: 65%;
     width: 60%;
 
     &__content {
+      @include customScroll;
+
       overflow-x: hidden;
       overflow-y: auto;
       border-radius: 0 0 7px 7px;
       background-color: $secondary-color;
       flex-grow: 2;
-
-      @include customScroll;
     }
 
     &__row {
