@@ -3,7 +3,7 @@ import { STORAGE_KEYS as storage, THEMES } from "@/utils/constants";
 export default {
   namespaced: 'true',
   state: {
-    currentTheme: localStorage.getItem(storage.THEME) || THEMES.DEFAULT,
+    currentTheme: localStorage.getItem(storage.THEME) || THEMES.DEFAULT.toLowerCase(),
   },
   mutations: {
     changeTheme(state, theme) {
