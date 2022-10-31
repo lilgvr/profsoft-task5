@@ -21,12 +21,12 @@
     </div>
     <div>
       <theme-item
-          :white="pastelColors.white"
-          :secondary="pastelColors.secondary"
-          :accent="pastelColors.accent"
-          :primary="pastelColors.primary"
-          :background="pastelColors.background"
-          theme-title="Pastel"
+          :white="lightColors.white"
+          :secondary="lightColors.secondary"
+          :accent="lightColors.accent"
+          :primary="lightColors.primary"
+          :background="lightColors.background"
+          theme-title="Light"
       />
     </div>
   </div>
@@ -36,7 +36,7 @@
 import ThemeItem from "@/components/customization/theme-item/ThemeItem";
 import { mapState } from "vuex";
 import defaultColors from "../../assets/styles/themes/default.module.scss";
-import pastelColors from "../../assets/styles/themes/pastel.module.scss";
+import lightColors from "../../assets/styles/themes/light.module.scss";
 import christmasColors from "../../assets/styles/themes/christmas.module.scss";
 
 export default {
@@ -49,7 +49,7 @@ export default {
   },
   data: () => ({
     defaultColors: defaultColors,
-    pastelColors: pastelColors,
+    lightColors: lightColors,
     christmasColors: christmasColors,
   }),
 }

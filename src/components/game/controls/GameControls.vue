@@ -30,21 +30,21 @@ export default {
     reshuffleText: 'Reshuffle',
     startImage: 'play',
     reshuffleImage: 'reload',
-    gameStarted: false,
   }),
   computed: {
     ...mapState({
       players: state => state.players.players,
       boundPlayers: state => state.players.boundPlayers,
+      gameStarted: state => state.players.gameStarted,
     }),
   },
   methods: {
-    ...mapActions('players', ['bindPlayers', 'clearBoundPlayers']),
+    ...mapActions('players', ['bindPlayers', 'clearBoundPlayers', 'setGameStarted']),
     handleStartClick() {
       if (this.gameStarted) return;
 
       this.startGame();
-      this.gameStarted = true;
+      this.setGameStarted(true);
 
       console.log(this.boundPlayers)
     },
@@ -95,6 +95,11 @@ export default {
         });
       }
     },
+  },
+  mounted() {
+    if (this.boundPlayers.size) {
+      this.setGameStarted(true);
+    }
   },
 }
 </script>

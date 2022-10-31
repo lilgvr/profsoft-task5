@@ -50,7 +50,6 @@ export default {
       if (this.themeTitle.toLowerCase() === this.currentTheme) return;
 
       this.changeTheme(this.themeTitle);
-      console.log(this.currentTheme)
     },
   },
 }

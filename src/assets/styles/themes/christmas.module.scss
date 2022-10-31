@@ -11,3 +11,126 @@ $christmas-background: #87C38F;
     primary: $christmas-primary;
     background: $christmas-background;
 }
+
+@mixin customScrollChristmas {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $christmas-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $christmas-white;
+        border-radius: 3px;
+    }
+}
+
+.christmas-theme {
+    background-color: $christmas-background;
+    color: $christmas-primary;
+
+    header {
+        background-color: $christmas-secondary;
+    }
+
+    h1, a {
+        color: $christmas-white;
+    }
+
+    a {
+        &:visited {
+            color: $christmas-white;
+        }
+    }
+
+    input {
+        background-color: $christmas-white;
+
+        &:focus {
+            outline: none;
+            border-color: $christmas-accent;
+        }
+    }
+
+    button {
+        background-color: $christmas-secondary;
+        color: $christmas-white;
+        border: 2px solid $christmas-primary;
+
+        &:hover {
+            background-color: $christmas-primary;
+            border-color: $christmas-accent;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $christmas-secondary;
+            border: 2px solid $christmas-primary;
+
+            &:hover {
+                background-color: $christmas-primary;
+                border-color: $christmas-accent;
+            }
+
+            & > div {
+                background-color: $christmas-accent;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $christmas-secondary;
+            border-color: $christmas-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $christmas-primary;
+        background-color: $christmas-secondary;
+
+        h3 {
+            border-bottom: 2px solid $christmas-primary;
+            background-color: $christmas-white;
+        }
+
+        & > div {
+            @include customScrollChristmas;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $christmas-primary;
+
+        &__content {
+            @include customScrollChristmas;
+            background-color: $christmas-secondary;
+        }
+
+        &__row {
+            border-bottom: 1px solid $christmas-primary;
+
+            p {
+                color: $christmas-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $christmas-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $christmas-white;
+            border-bottom: 2px solid $christmas-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $christmas-primary;
+        }
+
+        p {
+            color: $christmas-white;
+        }
+    }
+}
+

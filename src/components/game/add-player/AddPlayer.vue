@@ -52,8 +52,7 @@ export default {
 <style scoped lang="scss">
 @import "../../../assets/styles/themes/default.module";
 @import "../../../assets/styles/themes/christmas.module";
-@import "../../../assets/styles/themes/pastel.module";
-@import "../../../assets/styles/index";
+@import "../../../assets/styles/themes/light.module";
 
 .addPlayer {
   &__input {

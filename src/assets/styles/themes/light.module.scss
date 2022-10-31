@@ -1,0 +1,135 @@
+$light-white: #EAE0D5;
+$light-secondary: #5E503F;
+$light-accent: #22333B;
+$light-primary: #0A0908;
+$light-background: #C6AC8F;
+
+:export {
+    white: $light-white;
+    secondary: $light-secondary;
+    accent: $light-accent;
+    primary: $light-primary;
+    background: $light-background;
+}
+
+@mixin customScrollLight {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $light-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-white;
+        border-radius: 3px;
+    }
+}
+
+.light-theme {
+    background-color: $light-background;
+    color: $light-primary;
+
+    header {
+        background-color: $light-secondary;
+    }
+
+    h1, a {
+        color: $light-white;
+    }
+
+    a {
+        &:visited {
+            color: $light-white;
+        }
+    }
+
+    input {
+        background-color: $light-white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        background-color: $light-secondary;
+        color: $light-white;
+        border: 2px solid $light-primary;
+
+        &:hover {
+            background-color: $light-accent;
+            border-color: $light-secondary;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $light-secondary;
+            border: 2px solid $light-primary;
+
+            &:hover {
+                background-color: $light-accent;
+                border-color: $light-accent;
+            }
+
+            & > div {
+                background-color: $light-background;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $light-secondary;
+            border-color: $light-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $light-primary;
+        background-color: $light-secondary;
+
+        h3 {
+            border-bottom: 2px solid $light-primary;
+            background-color: $light-white;
+        }
+
+        & > div {
+            @include customScrollLight;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $light-primary;
+        background-color: $light-secondary;
+
+        &__content {
+            @include customScrollLight;
+            background-color: $light-secondary;
+        }
+
+        &__row {
+            border-bottom: 1px solid $light-primary;
+
+            p {
+                color: $light-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $light-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $light-white;
+            border-bottom: 2px solid $light-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $light-primary;
+        }
+
+        p {
+            color: $light-white;
+        }
+    }
+}

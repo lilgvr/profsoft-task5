@@ -11,3 +11,126 @@ $default-background: #C9B598;
     primary: $default-primary;
     background: $default-background;
 }
+
+@mixin customScrollDefault {
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: $default-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $default-white;
+        border-radius: 3px;
+    }
+}
+
+.default-theme {
+    background-color: $default-background;
+    color: $default-primary;
+
+    header {
+        background-color: $default-secondary;
+    }
+
+    h1, a {
+        color: $default-white;
+    }
+
+    a {
+        &:visited {
+            color: $default-white;
+        }
+    }
+
+    input {
+        background-color: $default-white;
+
+        &:focus {
+            outline: none;
+            border-color: $default-accent;
+        }
+    }
+
+    button {
+        background-color: $default-secondary;
+        color: $default-white;
+        border: 2px solid $default-primary;
+
+        &:hover {
+            background-color: $default-primary;
+            border-color: $default-accent;
+        }
+    }
+
+    .controls__button {
+        & > div {
+            background-color: $default-secondary;
+            border: 2px solid $default-primary;
+
+            &:hover {
+                background-color: $default-primary;
+                border-color: $default-accent;
+            }
+
+            & > div {
+                background-color: $default-accent;
+            }
+        }
+
+        &.disabled:hover {
+            background-color: $default-secondary;
+            border-color: $default-primary;
+        }
+    }
+
+    .playersList {
+        border: 2px solid $default-primary;
+        background-color: $default-secondary;
+
+        h3 {
+            border-bottom: 2px solid $default-primary;
+            background-color: $default-white;
+        }
+
+        & > div {
+            @include customScrollDefault;
+        }
+    }
+
+    .gameStateTable {
+        border: 2px solid $default-primary;
+
+        &__content {
+            @include customScrollDefault;
+            background-color: $default-secondary;
+        }
+
+        &__row {
+            border-bottom: 1px solid $default-primary;
+
+            p {
+                color: $default-white;
+
+                &:first-of-type {
+                    border-right: 1px solid $default-primary;
+                }
+            }
+        }
+
+        &__header {
+            background-color: $default-white;
+            border-bottom: 2px solid $default-primary;
+        }
+    }
+
+    .santaPlayer {
+        &:not(:last-of-type) {
+            border-bottom: 2px solid $default-primary;
+        }
+
+        p {
+            color: $default-white;
+        }
+    }
+}
+

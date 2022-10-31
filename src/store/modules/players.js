@@ -9,6 +9,7 @@ export default {
     boundPlayers: new Map(
       JSON.parse(localStorage.getItem('secretSanta/boundPlayers')),
     ),
+    gameStarted: false,
   },
   mutations: {
     addPlayer: (state, name) => {
@@ -20,10 +21,14 @@ export default {
     },
     bindPlayers: (state, { firstPlayer, secondPlayer }) => {
       state.boundPlayers.set(firstPlayer, secondPlayer);
-      // localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
+      localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
+      state.gameStarted = true;
     },
     clearBoundPlayers: (state) => {
       state.boundPlayers.clear();
+    },
+    setGameStarted: (state, value) => {
+      state.gameStarted = !!value;
     },
   },
   actions: {
@@ -35,6 +40,9 @@ export default {
     },
     clearBoundPlayers: ({ commit }) => {
       commit('clearBoundPlayers');
+    },
+    setGameStarted: ({ commit }, value) => {
+      commit('setGameStarted', value);
     },
   },
 }

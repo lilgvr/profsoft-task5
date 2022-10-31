@@ -27,8 +27,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles/mixins";
-
 .playersList {
   width: 30%;
   border-radius: 10px;
@@ -53,9 +51,6 @@ export default {
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-
-    @include customScrollDefault;
-
   }
 }
 </style>

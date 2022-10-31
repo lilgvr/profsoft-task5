@@ -16,6 +16,7 @@
         >
           <p>{{ key.name }}</p>
           <p>{{ value.name }}</p>
+
         </div>
       </div>
     </div>
@@ -37,11 +38,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../assets/styles/mixins";
 
 .gameState {
   width: 50%;
-  max-height: 100vh;
+  max-height: 85vh;
 
   &Table {
     display: flex;
@@ -52,12 +52,10 @@ export default {
     width: 60%;
 
     &__content {
-      @include customScrollDefault;
-
       overflow-x: hidden;
       overflow-y: auto;
       border-radius: 0 0 7px 7px;
-      flex-grow: 2;
+      flex-grow: 1;
     }
 
     &__row {
