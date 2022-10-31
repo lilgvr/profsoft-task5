@@ -58,7 +58,7 @@ export default {
         ['bindPlayers', 'clearBoundPlayers', 'setGameStarted', 'clearPlayers'],
     ),
     handleStartClick() {
-      if (this.gameStarted) return;
+      if (this.gameStarted || !this.players.length) return;
 
       this.startGame();
       this.setGameStarted(true);
