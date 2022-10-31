@@ -54,7 +54,7 @@ export default {
       this.clearBoundPlayers();
       this.startGame();
     },
-    startGame() {
+    startGame() { // FIXME нечетное количество игроков - есть дарящие себе
       const getRandomIndex = () => Math.floor(Math.random() * this.players.length);
 
       const

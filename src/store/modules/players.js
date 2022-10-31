@@ -22,7 +22,6 @@ export default {
     bindPlayers: (state, { firstPlayer, secondPlayer }) => {
       state.boundPlayers.set(firstPlayer, secondPlayer);
       localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
-      state.gameStarted = true;
     },
     clearBoundPlayers: (state) => {
       state.boundPlayers.clear();

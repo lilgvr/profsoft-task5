@@ -34,6 +34,9 @@ export default {
       boundPlayers: state => state.players.boundPlayers,
     }),
   },
+  updated() {
+    console.log('GameState::', this.boundPlayers)
+  },
 }
 </script>
 

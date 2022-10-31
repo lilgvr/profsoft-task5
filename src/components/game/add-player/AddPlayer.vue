@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="addPlayer"
-      :class="getThemeClass()"
-  >
+  <div class="addPlayer">
     <div class="addPlayer__input">
       <input
           v-model="playerName"
@@ -42,17 +39,11 @@ export default {
       this.playerName = null;
       this.$refs.playerNameInput.focus();
     },
-    getThemeClass() {
-      return `${ this.currentTheme }-theme`;
-    },
   },
 }
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles/themes/default.module";
-@import "../../../assets/styles/themes/christmas.module";
-@import "../../../assets/styles/themes/light.module";
 
 .addPlayer {
   &__input {
