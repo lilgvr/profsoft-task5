@@ -6,13 +6,25 @@
           :image="startImage"
           :title="startText"
           :on-click="handleStartClick"
-          :disabled="gameStarted"
+          :disabled="gameStarted || !players.length"
       />
       <controls-button
           :image="reshuffleImage"
           :title="reshuffleText"
           :on-click="handleReshuffleClick"
+          :disabled="!gameStarted"
+      />
+      <controls-button
+          :image="reshuffleImage"
+          :title="clearText"
+          :on-click="handleClearPlayersCLick"
           :disabled="false"
+      />
+      <controls-button
+          :image="stopImage"
+          :title="stopText"
+          :on-click="handleStopClick"
+          :disabled="!gameStarted"
       />
     </div>
   </div>
@@ -28,25 +40,28 @@ export default {
   data: () => ({
     startText: 'Start game',
     reshuffleText: 'Reshuffle',
+    clearText: 'Clear players',
     startImage: 'play',
     reshuffleImage: 'reload',
+    stopImage: 'stop',
+    stopText: 'Stop',
   }),
   computed: {
     ...mapState({
       players: state => state.players.players,
-      boundPlayers: state => state.players.boundPlayers,
       gameStarted: state => state.players.gameStarted,
     }),
   },
   methods: {
-    ...mapActions('players', ['bindPlayers', 'clearBoundPlayers', 'setGameStarted']),
+    ...mapActions(
+        'players',
+        ['bindPlayers', 'clearBoundPlayers', 'setGameStarted', 'clearPlayers'],
+    ),
     handleStartClick() {
       if (this.gameStarted) return;
 
       this.startGame();
       this.setGameStarted(true);
-
-      console.log(this.boundPlayers)
     },
     handleReshuffleClick() {
       if (!this.gameStarted) return;
@@ -54,50 +69,49 @@ export default {
       this.clearBoundPlayers();
       this.startGame();
     },
-    startGame() { // FIXME нечетное количество игроков - есть дарящие себе
-      const getRandomIndex = () => Math.floor(Math.random() * this.players.length);
+    handleClearPlayersCLick() {
+      this.clearPlayers();
+      this.setGameStarted(false);
+    },
+    handleStopClick() {
+      if (!this.gameStarted) return;
 
-      const
-          isReceiver = (player) => {
-            const values = this.boundPlayers.values();
-            let next = values.next();
+      this.clearBoundPlayers();
+      this.setGameStarted(false);
+    },
 
-            while (!next.done) {
-              if (next.value.id === player.id) return true;
-              next = values.next();
-            }
-
-            return false;
-          }
+    startGame() {
+      const getRandomIndex = (max) => Math.floor(Math.random() * max);
+      let receivers = [...this.players];
 
       for (let i = 0; i < this.players.length; i++) {
-        let randomIndex = getRandomIndex();
-        const current = this.players[i];
+        let randomIndex = getRandomIndex(receivers.length);
+        const currentPlayer = this.players[i];
 
-        while (randomIndex === i) randomIndex = getRandomIndex();
-
-        let randomPlayer = this.players[randomIndex];
-
-        while (isReceiver(randomPlayer)) {
-          randomIndex = getRandomIndex();
-          randomPlayer = this.players[randomIndex];
+        while (currentPlayer.id === receivers[randomIndex].id) {
+          randomIndex = getRandomIndex(receivers.length);
         }
 
+        const randomPlayer = receivers[randomIndex];
+        receivers.splice(randomIndex, 1);
+
         this.bindPlayers({
-          firstPlayer: {
-            id: current.id,
-            name: current.name,
+          sender: {
+            id: currentPlayer.id,
+            name: currentPlayer.name,
+            boundPlayer: randomPlayer,
           },
-          secondPlayer: {
+          receiver: {
             id: randomPlayer.id,
             name: randomPlayer.name,
+            boundPlayer: currentPlayer,
           },
         });
       }
     },
   },
   mounted() {
-    if (this.boundPlayers.size) {
+    if (this.players.some(player => player.boundPlayer !== null)) {
       this.setGameStarted(true);
     }
   },
@@ -106,7 +120,7 @@ export default {
 
 <style scoped lang="scss">
 .controls {
-  width: 50%;
+  width: 80%;
   height: 30%;
   margin-bottom: 6vw;
   display: flex;

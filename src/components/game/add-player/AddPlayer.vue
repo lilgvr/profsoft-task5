@@ -17,18 +17,13 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "AddPlayer",
   data: () => ({
     playerName: '',
   }),
-  computed: {
-    ...mapState({
-      currentTheme: state => state.customization.currentTheme,
-    }),
-  },
   methods: {
     ...mapActions('players', ['addPlayer']),
     createPlayer() {

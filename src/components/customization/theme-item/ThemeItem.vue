@@ -56,14 +56,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles/themes/default.module";
 
 .theme-item-ctr {
   & > div {
     display: flex;
     flex-direction: row;
     border-radius: 7px;
-    border: 1px solid $default-primary;
     margin-top: 6vw;
 
     &:hover {

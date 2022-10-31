@@ -1,12 +1,14 @@
+import { STORAGE_KEYS as storage, THEMES } from "@/utils/constants";
+
 export default {
   namespaced: 'true',
   state: {
-    currentTheme: localStorage.getItem('secretSanta/currentTheme') || 'default',
+    currentTheme: localStorage.getItem(storage.THEME) || THEMES.DEFAULT,
   },
   mutations: {
     changeTheme(state, theme) {
       state.currentTheme = theme.toLowerCase();
-      localStorage.setItem('secretSanta/currentTheme', state.currentTheme);
+      localStorage.setItem(storage.THEME, state.currentTheme);
     },
   },
   actions: {

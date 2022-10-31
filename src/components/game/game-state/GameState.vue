@@ -11,11 +11,11 @@
       <div class="gameStateTable__content">
         <div
             class="gameStateTable__row"
-            v-for="[key, value] in boundPlayers"
-            :key="key.id"
+            v-for="player in players"
+            :key="player.id"
         >
-          <p>{{ key.name }}</p>
-          <p>{{ value.name }}</p>
+          <p>{{ player.name }}</p>
+          <p>{{ player.boundPlayer?.name }}</p>
 
         </div>
       </div>
@@ -31,11 +31,7 @@ export default {
   computed: {
     ...mapState({
       players: state => state.players.players,
-      boundPlayers: state => state.players.boundPlayers,
     }),
-  },
-  updated() {
-    console.log('GameState::', this.boundPlayers)
   },
 }
 </script>

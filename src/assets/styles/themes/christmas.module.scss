@@ -132,5 +132,9 @@ $christmas-background: #87C38F;
             color: $christmas-white;
         }
     }
+
+    .theme-item-ctr > div {
+        border: 1px solid $christmas-primary;
+    }
 }
 

@@ -132,4 +132,8 @@ $light-background: #C6AC8F;
             color: $light-white;
         }
     }
+
+    .theme-item-ctr > div{
+        border: 1px solid $light-primary;
+    }
 }

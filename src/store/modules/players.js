@@ -1,14 +1,12 @@
+import { STORAGE_KEYS as storage } from "@/utils/constants";
 import { v4 as uuidv4 } from 'uuid';
 
 export default {
   namespaced: 'true',
   state: {
     players: JSON.parse(
-      localStorage.getItem('secretSanta/players'),
+      localStorage.getItem(storage.PLAYERS),
     ) || [],
-    boundPlayers: new Map(
-      JSON.parse(localStorage.getItem('secretSanta/boundPlayers')),
-    ),
     gameStarted: false,
   },
   mutations: {
@@ -16,15 +14,27 @@ export default {
       state.players.push({
         id: uuidv4(),
         name,
+        boundPlayer: null,
       });
-      localStorage.setItem('secretSanta/players', JSON.stringify(state.players));
+      localStorage.setItem(storage.PLAYERS, JSON.stringify(state.players));
     },
-    bindPlayers: (state, { firstPlayer, secondPlayer }) => {
-      state.boundPlayers.set(firstPlayer, secondPlayer);
-      localStorage.setItem('secretSanta/boundPlayers', JSON.stringify(Array.from(state.boundPlayers.entries())));
+    bindPlayers: (state, { sender, receiver }) => {
+      state.players = state.players.map(player => player.id === sender.id ? {
+        ...player,
+        boundPlayer: receiver,
+      } : player);
+      localStorage.setItem(storage.PLAYERS, JSON.stringify(state.players));
+    },
+    clearPlayers: (state) => {
+      state.players = [];
+      localStorage.setItem(storage.PLAYERS, JSON.stringify(state.players));
     },
     clearBoundPlayers: (state) => {
-      state.boundPlayers.clear();
+      state.players = state.players.map(player => {
+        player.boundPlayer = null
+        return player;
+      });
+      localStorage.setItem(storage.PLAYERS, JSON.stringify(state.players));
     },
     setGameStarted: (state, value) => {
       state.gameStarted = !!value;
@@ -34,11 +44,14 @@ export default {
     addPlayer: ({ commit }, name) => {
       commit('addPlayer', name);
     },
-    bindPlayers: ({ commit }, { firstPlayer, secondPlayer }) => {
-      commit('bindPlayers', { firstPlayer, secondPlayer });
+    bindPlayers: ({ commit }, { sender, receiver }) => {
+      commit('bindPlayers', { sender, receiver });
     },
     clearBoundPlayers: ({ commit }) => {
       commit('clearBoundPlayers');
+    },
+    clearPlayers: ({ commit }) => {
+      commit('clearPlayers');
     },
     setGameStarted: ({ commit }, value) => {
       commit('setGameStarted', value);

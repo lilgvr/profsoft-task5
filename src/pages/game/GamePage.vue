@@ -16,16 +16,10 @@ import AddPlayer from "@/components/game/add-player/AddPlayer";
 import GameControls from "@/components/game/controls/GameControls";
 import GameState from "@/components/game/game-state/GameState";
 import PlayerList from "@/components/game/player-list/PlayerList";
-import { mapState } from "vuex";
 
 export default {
   name: 'GamePage',
   components: { PlayerList, AddPlayer, GameControls, GameState },
-  computed: {
-    ...mapState({
-      currentTheme: state => state.customization.currentTheme,
-    }),
-  },
 }
 </script>
 

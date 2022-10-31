@@ -8,7 +8,7 @@
           :accent="defaultColors.accent"
           :primary="defaultColors.primary"
           :background="defaultColors.background"
-          theme-title="Default"
+          :theme-title="themes.DEFAULT"
       />
       <theme-item
           :white="christmasColors.white"
@@ -16,7 +16,7 @@
           :accent="christmasColors.accent"
           :primary="christmasColors.primary"
           :background="christmasColors.background"
-          theme-title="Christmas"
+          :theme-title="themes.CHRISTMAS"
       />
     </div>
     <div>
@@ -26,7 +26,7 @@
           :accent="lightColors.accent"
           :primary="lightColors.primary"
           :background="lightColors.background"
-          theme-title="Light"
+          :theme-title="themes.LIGHT"
       />
     </div>
   </div>
@@ -34,23 +34,19 @@
 
 <script>
 import ThemeItem from "@/components/customization/theme-item/ThemeItem";
-import { mapState } from "vuex";
+import { THEMES } from "@/utils/constants";
+import christmasColors from "../../assets/styles/themes/christmas.module.scss";
 import defaultColors from "../../assets/styles/themes/default.module.scss";
 import lightColors from "../../assets/styles/themes/light.module.scss";
-import christmasColors from "../../assets/styles/themes/christmas.module.scss";
 
 export default {
   name: "CustomizationPage",
   components: { ThemeItem },
-  computed: {
-    ...mapState({
-      currentTheme: state => state.customization.currentTheme,
-    }),
-  },
   data: () => ({
     defaultColors: defaultColors,
     lightColors: lightColors,
     christmasColors: christmasColors,
+    themes: THEMES,
   }),
 }
 </script>
